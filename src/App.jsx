@@ -1,8 +1,10 @@
 // frontend/src/App.jsx
 
-import React, { useState } from "react"; // FIXED: Corrected import syntax for useState
+import React, { useState } from "react";
 import WelcomePage from "./pages/WelcomePage.jsx";
 import AnalyzePage from "./pages/AnalyzePage.jsx";
+import Header from "./components/Header.jsx"; // Corrected path and casing
+import Footer from "./components/Footer.jsx"; // Corrected path and casing
 
 function App() {
   const [currentPage, setCurrentPage] = useState("welcome"); // 'welcome' or 'analyze'
@@ -12,7 +14,7 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 to-indigo-100 font-inter text-gray-800 p-4 sm:p-6 lg:p-8">
+    <div className="flex flex-col min-h-screen bg-gradient-to-br from-purple-50 to-indigo-100 font-inter text-gray-800">
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
         body {
@@ -76,13 +78,17 @@ function App() {
         .animate-bounce-once { animation: bounceOnce 1s ease-in-out forwards; animation-delay: 0.5s; }
         .animate-spin-slow { animation: spinSlow 5s linear infinite; }
       `}</style>
-
-      {/* WelcomePage now manages its own max-width and centering */}
-      {currentPage === "welcome" ? (
-        <WelcomePage onStartAnalysis={handleStartAnalysis} />
-      ) : (
-        <AnalyzePage />
-      )}
+      <Header /> {/* Render the Header component */}
+      {/* Main Content Area - occupies remaining space */}
+      <main className="flex-grow flex flex-col items-center p-4 sm:p-6 lg:p-8">
+        {currentPage === "welcome" ? (
+          <WelcomePage onStartAnalysis={handleStartAnalysis} />
+        ) : (
+          <AnalyzePage />
+        )}
+      </main>
+      {/* Conditionally render the Footer based on the currentPage */}
+      {currentPage === "welcome" && <Footer />}
     </div>
   );
 }

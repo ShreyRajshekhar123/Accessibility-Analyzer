@@ -5,11 +5,11 @@ import React, { useState, useEffect, useRef } from "react";
 const WelcomePage = ({ onStartAnalysis }) => {
   // Refs to attach to the sections we want to observe
   const howItWorksRef = useRef(null);
-  const footerRef = useRef(null);
+  // Removed footerRef as footer is now in App.jsx
 
   // State to control the visibility/animation of each section
   const [showHowItWorks, setShowHowItWorks] = useState(false);
-  const [showFooter, setShowFooter] = useState(false);
+  // Removed showFooter as footer is now in App.jsx
 
   // State to control active step highlighting
   const [activeStep, setActiveStep] = useState(0); // 0: none, 1: step1, 2: step2, 3: step3
@@ -28,10 +28,6 @@ const WelcomePage = ({ onStartAnalysis }) => {
           howItWorksObserver.unobserve(entry.target);
 
           // Set timeouts to activate steps in sync with arrow animation
-          // These delays correspond to the arrowPath keyframes in App.jsx
-          // Arrow starts after 0.8s, passes step 1 around 1.4s (0.8s + 0.6s from App.jsx keyframes for first third)
-          // Passes step 2 around 2.1s (0.8s + 1.3s from App.jsx keyframes for second third)
-          // Passes step 3 around 2.8s (0.8s + 2.0s from App.jsx keyframes for third third)
           setTimeout(() => setActiveStep(1), 1400); // Activate Step 1 after arrow passes it
           setTimeout(() => setActiveStep(2), 2100); // Activate Step 2 after arrow passes it
           setTimeout(() => setActiveStep(3), 2800); // Activate Step 3 after arrow passes it
@@ -39,59 +35,26 @@ const WelcomePage = ({ onStartAnalysis }) => {
       });
     }, observerOptions);
 
-    const footerObserver = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setShowFooter(true);
-            footerObserver.unobserve(entry.target);
-          }
-        });
-      },
-      { ...observerOptions, threshold: 0.1 }
-    );
-
-    // Attach observers to the respective DOM elements
+    // Attach observer to the 'How it Works' section
     if (howItWorksRef.current) {
       howItWorksObserver.observe(howItWorksRef.current);
     }
-    if (footerRef.current) {
-      footerObserver.observe(footerRef.current);
-    }
 
-    // Cleanup function: Disconnect observers when the component unmounts
+    // Cleanup function: Disconnect observer when the component unmounts
     return () => {
       if (howItWorksRef.current) {
         howItWorksObserver.unobserve(howItWorksRef.current);
-      }
-      if (footerRef.current) {
-        footerObserver.unobserve(footerRef.current);
       }
     };
   }, []); // Empty dependency array ensures this effect runs only once on mount
 
   return (
-    <div className="max-w-4xl mx-auto w-full">
-      {" "}
-      {/* Container for main content, centered */}
-      {/* Welcome Section - always visible, but could have its own initial animation */}
+    // Removed max-w-4xl mx-auto w-full and any padding from this div
+    // The main content area in App.jsx now handles overall centering and padding
+    <div className="w-full max-w-4xl mx-auto flex flex-col items-center">
+      {/* Welcome Section */}
       <section className="text-center py-12">
-        <header className="flex flex-col items-center justify-center mb-8">
-          <h1 className="text-4xl sm:text-5xl font-extrabold text-indigo-700 mb-2">
-            <span
-              role="img"
-              aria-label="Accessibility Icon"
-              className="mr-3 text-5xl sm:text-6xl inline-block transform -rotate-12 animate-spin-slow"
-            >
-              ⚙️
-            </span>
-            Accessibility Analyzer
-          </h1>
-          <p className="text-lg text-gray-600">
-            Your first step to a more inclusive web.
-          </p>
-        </header>
-
+        {/* Removed header from here, now in App.jsx */}
         <h2 className="text-5xl sm:text-6xl font-extrabold text-indigo-700 mb-4">
           Welcome!
         </h2>
@@ -111,8 +74,8 @@ const WelcomePage = ({ onStartAnalysis }) => {
           Start Analyzing Now!
         </button>
       </section>
+
       {/* How it Works Section - appears on scroll */}
-      {/* Added min-h-[50vh] to ensure there's enough scroll space if content is short */}
       <section
         ref={howItWorksRef}
         className={`w-full py-12 px-4 transition-all duration-1000 ease-out ${
@@ -214,23 +177,7 @@ const WelcomePage = ({ onStartAnalysis }) => {
           </div>
         </div>
       </section>
-      {/* Spacer to ensure footer is scrollable into view, if necessary. */}
-      <div className={`${!showFooter ? "min-h-[50vh]" : ""}`}></div>
-      {/* Footer - appears on scroll */}
-      <footer
-        ref={footerRef}
-        className={`w-full py-4 mt-8 text-sm text-gray-500 text-center transition-all duration-1000 ease-out ${
-          showFooter ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-        }`}
-      >
-        <p>
-          &copy; {new Date().getFullYear()} Accessibility Analyzer. Built with{" "}
-          <span role="img" aria-label="heart">
-            ❤️
-          </span>{" "}
-          for an inclusive web.
-        </p>
-      </footer>
+      {/* Removed footer from here */}
     </div>
   );
 };
