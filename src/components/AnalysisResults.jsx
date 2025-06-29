@@ -1,5 +1,3 @@
-// frontend/src/components/AnalysisResults.jsx
-
 import React, { useState } from "react"; // Added useState for filter functionality
 import StatCard from "./StatCard.jsx";
 import IssueCard from "./IssueCard.jsx";
@@ -28,9 +26,17 @@ const AnalysisResults = ({ result }) => {
 
   // Data for Bar Chart: Severity Distribution
   const severityData = [
-    { name: "Critical", value: result.summary.critical, color: "#ef4444" }, // Tailwind red-500
-    { name: "Moderate", value: result.summary.moderate, color: "#f97316" }, // Tailwind orange-500
-    { name: "Minor", value: result.summary.minor, color: "#eab308" }, // Tailwind yellow-500
+    {
+      name: "Critical",
+      value: result.summary.criticalIssues,
+      color: "#ef4444",
+    }, // Updated to criticalIssues
+    {
+      name: "Moderate",
+      value: result.summary.moderateIssues,
+      color: "#f97316",
+    }, // Updated to moderateIssues
+    { name: "Minor", value: result.summary.minorIssues, color: "#eab308" }, // Updated to minorIssues
   ];
 
   // Data for Pie Chart: Overall Issue Distribution
@@ -49,7 +55,7 @@ const AnalysisResults = ({ result }) => {
       issue.severity.toLowerCase() === filterSeverity.toLowerCase()
   );
 
-  console.log("Accessibility Score:", result.summary.score);
+  // console.log("Accessibility Score:", result.summary.score);
   // Function to handle filter selection
   const handleFilterChange = (severity) => {
     setFilterSeverity(severity);
@@ -138,17 +144,17 @@ const AnalysisResults = ({ result }) => {
         />
         <StatCard
           title="Critical Issues"
-          value={result.summary.critical}
+          value={result.summary.criticalIssues} // Updated property
           color="bg-red-100 text-red-800"
         />
         <StatCard
           title="Moderate Issues"
-          value={result.summary.moderate}
+          value={result.summary.moderateIssues} // Updated property
           color="bg-orange-100 text-orange-800"
         />
         <StatCard
           title="Minor Issues"
-          value={result.summary.minor}
+          value={result.summary.minorIssues} // Updated property
           color="bg-yellow-100 text-yellow-800"
         />
       </div>

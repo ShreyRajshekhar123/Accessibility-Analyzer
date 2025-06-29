@@ -1,1 +1,60 @@
 @import "tailwindcss";
+
+/* Custom Scrollbar Styles */
+
+/* For Webkit-based browsers (Chrome, Safari, Edge, Opera) */
+::-webkit-scrollbar {
+  width: 10px; /* Adjust width as desired */
+  height: 10px; /* For horizontal scrollbars */
+}
+
+::-webkit-scrollbar-track {
+  background: #f0f4f8; /* A light, subtle track color (light gray/blue) */
+  border-radius: 8px; /* Slightly rounded corners */
+}
+
+::-webkit-scrollbar-thumb {
+  background: #6366f1; /* Indigo-500 for the thumb */
+  border-radius: 8px; /* Rounded corners for the thumb */
+  border: 2px solid #f0f4f8; /* Add a border to make it visually pop from the track */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #4f46e5; /* A slightly darker indigo on hover */
+}
+
+::-webkit-scrollbar-corner {
+  background: #f0f4f8; /* Match the track */
+}
+
+/* For Firefox */
+html {
+  scrollbar-width: thin;
+  scrollbar-color: #6366f1 #f0f4f8; /* thumb color track color */
+}
+
+/* If you have specific scrollable containers, apply these styles to their classes */
+/* Example for a sidebar if it scrolls: */
+/*
+.sidebar-scroll-area {
+  scrollbar-width: thin;
+  scrollbar-color: #6366f1 #f0f4f8;
+}
+
+.sidebar-scroll-area::-webkit-scrollbar {
+  width: 8px; // Slightly thinner for sidebar
+}
+
+.sidebar-scroll-area::-webkit-scrollbar-track {
+  background: #e2e8f0; // Lighter track for sidebar
+}
+
+.sidebar-scroll-area::-webkit-scrollbar-thumb {
+  background: #4f46e5; // Darker indigo for sidebar thumb
+  border-radius: 6px;
+}
+
+.sidebar-scroll-area::-webkit-scrollbar-thumb:hover {
+  background: #3730a3; // Even darker on hover
+}
+*/

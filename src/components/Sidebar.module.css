@@ -1,0 +1,37 @@
+/* frontend/src/components/Sidebar.module.css */
+
+/* Apply these styles to the scrollable nav element within the sidebar */
+.sidebarNav {
+  /* For Webkit-based browsers (Chrome, Safari, Edge, Opera) */
+  /* Note: You need to apply these pseudo-elements to the element itself */
+}
+
+.sidebarNav::-webkit-scrollbar {
+  width: 8px; /* Slightly thinner for sidebar */
+  height: 8px; /* For horizontal scrollbars if applicable */
+}
+
+.sidebarNav::-webkit-scrollbar-track {
+  background: #e2e8f0; /* Lighter track for sidebar, or even transparent */
+  border-radius: 6px;
+}
+
+.sidebarNav::-webkit-scrollbar-thumb {
+  background: #4f46e5; /* Darker indigo for sidebar thumb (e.g., Indigo-600) */
+  border-radius: 6px;
+  border: 1px solid #e2e8f0; /* Subtle border matching the track */
+}
+
+.sidebarNav::-webkit-scrollbar-thumb:hover {
+  background: #3730a3; /* Even darker on hover (e.g., Indigo-800) */
+}
+
+.sidebarNav::-webkit-scrollbar-corner {
+  background: #e2e8f0; /* Match the track */
+}
+
+/* For Firefox */
+.sidebarNav {
+  scrollbar-width: thin; /* "auto", "thin", or "none" */
+  scrollbar-color: #4f46e5 #e2e8f0; /* thumb color track color */
+}
