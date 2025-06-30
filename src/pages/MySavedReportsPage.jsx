@@ -215,7 +215,7 @@ const MySavedReportsPage = () => {
                     {report.summary?.total_issues || 0}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-red-600 font-semibold">
-                    {report.summary?.critical || 0}
+                    {report.summary?.criticalIssues || 0}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                     <Link
