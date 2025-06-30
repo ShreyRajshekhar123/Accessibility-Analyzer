@@ -6,7 +6,7 @@ import AnalysisResults from "../components/AnalysisResults.jsx"; // Ensure this 
 import { useAuth } from "../context/AuthContext";
 
 // Define your backend API URL
-const API_BASE_URL = "http://localhost:8000/api";
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 const AnalyzePage = () => {
   const [url, setUrl] = useState("");

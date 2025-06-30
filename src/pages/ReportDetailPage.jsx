@@ -3,7 +3,7 @@ import { useParams, useNavigate } from "react-router-dom"; // useParams to get r
 import { useAuth } from "../context/AuthContext"; // To get the logged-in user's ID
 import AnalysisResults from "../components/AnalysisResults"; // Import AnalysisResults component
 
-const API_BASE_URL = "http://localhost:8000/api"; // Your FastAPI backend API base URL
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL; // Your FastAPI backend API base URL
 
 const ReportDetailPage = () => {
   const { reportId } = useParams(); // Get the reportId from the URL (e.g., from /reports/12345)

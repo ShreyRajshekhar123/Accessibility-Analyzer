@@ -26,7 +26,7 @@ ChartJS.register(
 );
 
 // Define your backend API URL
-const API_BASE_URL = "http://localhost:8000/api";
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 const DashboardPage = () => {
   const { user, loadingAuth } = useAuth(); // user will be the Firebase user object
@@ -85,7 +85,6 @@ const DashboardPage = () => {
       }
       // Added console.log to see fetched data
       // console.log("Fetched User Reports:", data);
-
     } catch (err) {
       console.error("Failed to fetch user reports:", err);
       setErrorReports(
